@@ -1,7 +1,6 @@
 import React from 'react';
 
 function MapCard({ data }) {
-    console.log(data)
     return (
         <div className="w-100 mb3 bg-white br2 pointer">
             <div className="flex justify-between items-center pa3">

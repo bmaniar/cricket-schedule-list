@@ -18,15 +18,14 @@ const CRICKET_SCHEDULE = gql`
 `;
 
 function App() {
-  const [matchType, setMatchType] = useState("All");
+  const [matchType, setMatchType] = useState("all");
   const [matchStatus, setMatchStatus] = useState("upcoming");
-  const [page, setPage] = useState(0);
   const { loading, error, data } = useQuery(CRICKET_SCHEDULE,
     {
       variables: {
         type: matchType,
         status: matchStatus,
-        page: page
+        page: 0
       }
     });
 
@@ -34,7 +33,7 @@ function App() {
   if (error) return <p>Error :(</p>;
   return (
     <div className="flex w-100 flex-column min-vh-100 bg-light-gray">
-      <Schedule data={data} />
+      <Schedule data={data} setMatchStatus={setMatchStatus} matchStatus={matchStatus} matchType={matchType} setMatchType={setMatchType} />
     </div>
   );
 }

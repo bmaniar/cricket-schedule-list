@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import Schedule from './Schedule';
 import './App.css';
 
 const CRICKET_SCHEDULE = gql`
-  {
-    schedule(type: "All", status: "upcoming", page: 0){
+  query getSchedule($type: String!, $status: String!, $page: Int!){
+    schedule(type: $type, status: $status, page: $page){
       matchID
       seriesName
       homeTeamName
@@ -18,7 +18,17 @@ const CRICKET_SCHEDULE = gql`
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(CRICKET_SCHEDULE);
+  const [matchType, setMatchType] = useState("All");
+  const [matchStatus, setMatchStatus] = useState("upcoming");
+  const [page, setPage] = useState(0);
+  const { loading, error, data } = useQuery(CRICKET_SCHEDULE,
+    {
+      variables: {
+        type: matchType,
+        status: matchStatus,
+        page: page
+      }
+    });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;

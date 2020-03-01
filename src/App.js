@@ -9,6 +9,10 @@ const CRICKET_SCHEDULE = gql`
     schedule(type: "All", status: "upcoming", page: 0){
       matchID
       seriesName
+      homeTeamName
+      awayTeamName
+      matchNumber
+      venue
     }
   }
 `;

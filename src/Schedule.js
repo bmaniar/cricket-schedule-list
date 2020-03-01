@@ -1,10 +1,11 @@
 import React from 'react';
+import MapCard from './MapCard';
 
-function Schedule({data}) {
+function Schedule({ data }) {
     return (
         <div className="ph3 relative">
             <header className="pr0">
-                <div className="black-70 f5 b db pt3 pb2">
+                <div className="black-70 f4 b db pt3 pb2">
                     Schedule
                 </div>
                 <div className="bg-white pt3 br2 overflow-hidden">
@@ -22,6 +23,13 @@ function Schedule({data}) {
                     </div>
                 </div>
             </header>
+            <section className="mt3">
+                <div className="w-100 db flex flex-wrap">
+                    {
+                        data.schedule.map(map => <MapCard data={map} />)
+                    }
+                </div>
+            </section>
         </div>
     );
 }

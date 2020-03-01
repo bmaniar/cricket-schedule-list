@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
+import Schedule from './Schedule';
 import './App.css';
 
 const CRICKET_SCHEDULE = gql`
@@ -18,8 +19,8 @@ function App() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   return (
-    <div className="App">
-
+    <div className="flex w-100 flex-column min-vh-100 bg-light-gray">
+      <Schedule data={data} />
     </div>
   );
 }
